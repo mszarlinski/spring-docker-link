@@ -1,0 +1,3 @@
+rootProject.name = 'spring-docker-link'
+
+include 'client-app', 'server-app'
