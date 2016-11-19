@@ -13,7 +13,8 @@ You can check Docker magic by executing:
 * `docker exec client bash -c 'env'` - extra environment variables
 
 ## Running example with `docker-compose`
-TBD
+
+Execute `docker-compose up` in `docker/` directory.
 
 ## Docker commands cheat sheet
 * `docker images`
