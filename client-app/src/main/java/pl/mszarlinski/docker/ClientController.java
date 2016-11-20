@@ -1,5 +1,6 @@
 package pl.mszarlinski.docker;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,14 +12,22 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class ClientController {
 
-    private static final String SERVER_APP_HOST = "server-app"; // injected into /etc/hosts by Docker
-
     private final RestTemplate restTemplate = new RestTemplate();
+
+    @Value("${example.server-app.host}")
+    private String serverAppHost;
+
+    @Value("${example.server-app.port}")
+    private int serverAppPort;
 
     @GetMapping
     @RequestMapping("/client")
     public String getInvitation() {
-        final String product = restTemplate.getForObject("http://" + SERVER_APP_HOST + ":8080/product", String.class);
+        final String product = restTemplate.getForObject(getProductEndpoint(), String.class);
         return "product: " + product;
+    }
+
+    private String getProductEndpoint() {
+        return "http://" + serverAppHost + ":" + serverAppPort + "/product";
     }
 }
