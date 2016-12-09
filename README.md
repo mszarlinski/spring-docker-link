@@ -23,3 +23,4 @@ Execute `docker-compose up` in `docker/` directory.
 * `docker stop, rm [-f], rmi`
 * `docker exec <container> bash -c 'cat /etc/hosts' , bash -c 'env'`
 * `docker attach`
+* `docker stop|rm $(docker ps -a -q)` - stop/remove all containers
